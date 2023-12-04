@@ -1,2 +1,8 @@
 # TallerEDatos3
-Taller Estructura de Datos - 3
+-----------------------------------------
+Integrantes:
+- Javier Saldaño
+- Bruno Toro
+-----------------------------------------
+# IMPLEMENTACION
+-----------------------------------------
