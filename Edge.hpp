@@ -3,24 +3,24 @@
 #include <vector>
 #include "Nodo.hpp"
 using namespace std;
-class Edges
+class Edge
 {
 private:
     Nodo* partida, *llegada;
     int velocidad,distancia;
 
 public:
-    Edges(Nodo* partida,Nodo* llegada,int velocidad,int distancia)
+    Edge(Nodo* partida,Nodo* llegada,int velocidad,int distancia)
     {
         this->partida=partida;
         this->llegada=llegada;
         this->velocidad=velocidad;
         this->distancia=distancia;
     }
-    ~Edges();
+    ~Edge();
 };
 
 
-Edges::~Edges()
+Edge::~Edge()
 {
 }
