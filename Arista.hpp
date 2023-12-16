@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "Nodo.hpp"
+class Nodo;
 using namespace std;
 
 class Arista
@@ -26,3 +26,4 @@ public:
 Arista::~Arista()
 {
 }
+

@@ -1,30 +1,33 @@
 #pragma once
 #include <iostream>
+#include "Arista.hpp"
 using namespace std;
-class Arista;
 
 class Nodo
 {
 private:
     int id;
     string nombre,tipo;
-    Arista* destino;
+    Arista* referencia;
 public:
     Nodo(int id, string nombre,string tipo)
     {
         this->id=id;
         this->nombre=nombre;
         this->tipo=tipo;
-        destino=nullptr;
+        referencia=nullptr;
     }
     int getId(){return id;}
     string getNombre(){return nombre;}
     string getTipo(){return tipo;}
-    Arista* getArista(){return destino;}
-    void setArista(Arista* arista){this->destino=destino;}
+    Arista* getArista(){return referencia;}
+    void setArista(Nodo*,int, int);
     ~Nodo();
 };
 
-Nodo::~Nodo()
+void Nodo::setArista(Nodo* destino,int velocidad, int distancia)
 {
+    {
+        this->referencia= new Arista(destino,velocidad,distancia);
+    }
 }

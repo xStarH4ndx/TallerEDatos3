@@ -32,5 +32,33 @@ int main(){
         archivo.close();
     }
 
+    ifstream archivo2;
+    archivo.open("conexiones.csv");
+
+    if (!archivo.is_open()) cout << "Error al abrir el archivo." << endl;
+    else 
+    {
+        string linea;
+        while (getline(archivo, linea)) 
+        {
+            istringstream ss(linea);
+            string idCliente,idServidor,velocidad,distancia;
+
+            getline(ss, idCliente, ',');
+            getline(ss, idServidor, ',');
+            getline(ss, velocidad, ',');
+            getline(ss, distancia, ',');
+            Nodo* cliente,* servidor;
+            for(Nodo* nodo:servidores)
+            {
+                if(nodo->getId()==stoi(idCliente))cliente=nodo;
+                if(nodo->getId()==stoi(idServidor))servidor=nodo;
+            }
+            cliente->setArista(servidor,stoi(velocidad),stoi(distancia));
+        }
+
+        archivo.close();
+    }
+
     return 0;
 }
