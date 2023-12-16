@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include "Nodo.hpp"
+#include "Grafo.hpp"
 using namespace std;
 
 
@@ -59,6 +60,6 @@ int main(){
 
         archivo.close();
     }
-
+    Grafo* grafo = new Grafo(servidores);
     return 0;
 }
