@@ -4,15 +4,16 @@
 #include "Nodo.hpp"
 using namespace std;
 
-class Grafo
+class BellmanFord
 {
 private:
     vector<Nodo*> servidores;
 public:
-    Grafo(vector<Nodo*> servidores)
+    BellmanFord(vector<Nodo*> servidores)
     {
         this->servidores=servidores;
     }
+    void rutaMasCorta(Nodo*partida,Nodo* llegada);
     
-    ~Grafo();
+    ~BellmanFord();
 };

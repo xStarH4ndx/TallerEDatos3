@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include "Nodo.hpp"
-#include "Grafo.hpp"
+#include "BellmanFord.hpp"
 using namespace std;
 
 
@@ -60,6 +60,6 @@ int main(){
 
         archivo.close();
     }
-    Grafo* grafo = new Grafo(servidores);
+    BellmanFord* grafo = new BellmanFord(servidores);
     return 0;
 }
