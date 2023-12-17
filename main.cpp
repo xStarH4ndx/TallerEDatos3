@@ -7,8 +7,6 @@
 #include "Edge.hpp"
 using namespace std;
 
-
-
 int main(){
 
     vector<Nodo*> servidoresConConexion;
