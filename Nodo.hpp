@@ -6,9 +6,9 @@ using namespace std;
 class Nodo
 {
 private:
-    int id;
-    string nombre,tipo;
-    Arista* referencia;
+    int id;// id del usuario
+    string nombre,tipo;// nombre del servidor + tipo (cliente o router)
+    Arista* referencia;// este es el "peso" de la arista, la arista contiene sus propios atributos
 public:
     Nodo(int id, string nombre,string tipo)
     {

@@ -6,8 +6,8 @@ using namespace std;
 class Arista
 {
 private:
-    Nodo* destino;
-    int velocidad,distancia;
+    Nodo* destino;// corresponde al clinete (id usuario + nombre servidor + tipo)
+    int velocidad,distancia;// corresponde al "peso" de la arista y los segundos que tarda
 public:
     Arista(Nodo* destino, int velocidad, int distancia)
     {
