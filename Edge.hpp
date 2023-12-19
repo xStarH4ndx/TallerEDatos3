@@ -3,20 +3,18 @@
 #include <vector>
 #include "Nodo.hpp"
 using namespace std;
-class Edge
+
+class Edge : public Arista
 {
 private:
-    Nodo* partida, *llegada;
-    int velocidad,distancia;
-
+    Nodo* partida;
 public:
-    Edge(Nodo* partida,Nodo* llegada,int velocidad,int distancia)
+    Edge(Nodo* partida,Nodo* destino,int velocidad,int distancia): Arista(destino, velocidad, distancia)
     {
         this->partida=partida;
-        this->llegada=llegada;
-        this->velocidad=velocidad;
-        this->distancia=distancia;
     }
+    
+    Nodo* getNodoPartida(){return this->partida;}
     ~Edge();
 };
 

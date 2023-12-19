@@ -70,6 +70,20 @@ int main(){
     vector<Nodo*> servidoresConConexion = servidores; //Haciendo una copia para tener los nodos antes de conectar
     vector<Edge*> conexiones = leerArchivoConexiones("conexiones.csv", servidoresConConexion);
 
+
+    //esto se puede implementar en el grafo para crearlo
+    for(Edge* elemento: conexiones){
+        //obtenemos el nodo de partida y llegada
+        Nodo* partida= elemento->getNodoPartida();
+        Nodo* destino= elemento->getDestino();
+        
+
+       // partida->setArista(destino,)
+
+
+
+    }
+
     BellmanFord* grafo = new BellmanFord(servidores,conexiones);
     return 0;
 
