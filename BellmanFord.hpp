@@ -31,10 +31,10 @@ public:
         }
     }
     void rutaMasCorta(Nodo*partida,Nodo* llegada);
-    
     ~BellmanFord();
 };
 
+//Esto es para liberar memoria
 BellmanFord::~BellmanFord(){
     for(Nodo* nodo: servidores){
         delete nodo;
