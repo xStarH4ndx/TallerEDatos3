@@ -19,6 +19,8 @@ public:
     int getVelocidad(){return velocidad;}
     int getDistancia(){return distancia;}
     void setDestino(Nodo* destino){this->destino=destino;}
+    void setVelocidad(int velocidad){this->velocidad=velocidad;}
+    void setDistancia(int distancia){this->distancia=distancia;}
     ~Arista();
 };
 

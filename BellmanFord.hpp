@@ -27,7 +27,7 @@ public:
             Nodo* destino= elemento->getDestino();
             int velocidad= elemento->getVelocidad();
             int distancia= elemento->getDistancia();
-            partida->setArista(destino, velocidad, distancia);
+            partida->HacerConexion(destino, velocidad, distancia);
         }
     }
     void rutaMasCorta(Nodo*partida,Nodo* llegada);
