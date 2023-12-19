@@ -72,7 +72,6 @@ int main(){
     //Creación del grafo (uniendo las conexiones)
     BellmanFord grafo(servidores, conexiones);
 
-
     return 0;
 
 }
