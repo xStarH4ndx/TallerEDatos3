@@ -43,7 +43,7 @@ Si el nodo es un "Router", realiza una verificación similar y agrega la nueva a
 Asegura que el nodo destino también tenga una conexión de vuelta.
 */
 void Nodo::HacerConexion(Nodo* destino,int velocidad, int distancia){
-    if (this->tipo=="Cliente"){
+    if (this->tipo=="cliente"){
         //En el caso de que ya esté hecha la conexión, se retorna y termina la recursividad
         for(Arista* arista : aristas){
             if(arista->getDestino()==destino){
@@ -62,7 +62,7 @@ void Nodo::HacerConexion(Nodo* destino,int velocidad, int distancia){
         // Aseguramos que el router tenga conexión con el cliente actual
         destino->HacerConexion(this,velocidad,distancia);
 
-    }else if (this->tipo=="Router") {
+    }else if (this->tipo=="router") {
         for(Arista* arista : aristas){
             if(arista->getDestino()==destino){
                 return;
