@@ -17,8 +17,4 @@ public:
     Nodo* getNodoPartida(){return this->partida;}
     ~Edge();
 };
-
-
-Edge::~Edge()
-{
-}
+Edge::~Edge(){}

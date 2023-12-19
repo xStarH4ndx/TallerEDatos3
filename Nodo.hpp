@@ -34,13 +34,9 @@ void Nodo::agregarArista(Nodo* destino, int velocidad, int distancia){
 }
 
 /* EXPLICACIÓN:
-Si el nodo es un "CLiente", verifica si ya existe una conexión con el destino antes de 
-agregar una nueva arista. Si ya hay una arista, la elimina antes de establecer la nueva 
-conexión. Luego, agrega la nueva arista y asegura que el nodo destino 
-también tenga una conexión de vuelta.
-
-Si el nodo es un "Router", realiza una verificación similar y agrega la nueva arista.
-Asegura que el nodo destino también tenga una conexión de vuelta.
+Si el nodo es un "cliente", verifica y establece una nueva conexión con el nodo destino, asegurando 
+la bidireccionalidad. Para nodos "router", el proceso es similar, permitiendo conexiones bidireccionales 
+con otros nodos.
 */
 void Nodo::HacerConexion(Nodo* destino,int velocidad, int distancia){
     if (this->tipo=="cliente"){
@@ -51,30 +47,35 @@ void Nodo::HacerConexion(Nodo* destino,int velocidad, int distancia){
             }
         }
         
-        // Asignamos la conexión con el router
+        //Se establece la conexión con el router
         this->agregarArista(destino, velocidad, distancia);
 
+        //En el caso de que router ya tenga conexión con el cliente, se retorna
         for(Arista* referencia : destino->getAristas()){
             if(referencia->getDestino()==this){
                 return;
             }
         }
-        // Aseguramos que el router tenga conexión con el cliente actual
+        //Si router no tiene conexion, se le agrega
         destino->HacerConexion(this,velocidad,distancia);
 
     }else if (this->tipo=="router") {
+        //Se revisa las conexiones que tiene el router hasta encontrar la que se busca
         for(Arista* arista : aristas){
             if(arista->getDestino()==destino){
                 return;
             }
         }
+        //En el caso de que la encuentre, se retorna, de lo contrario, se le añade
         this->agregarArista(destino,velocidad,distancia);
 
+        //En el caso de que el nodo "destino" tenga una conexión ya hecha con el router, se retorna
         for(Arista* referencia: destino->getAristas()){
             if(referencia->getDestino()==this){
                 return;
             }
         }
+        //En el caso de que no tenga conexión, se vuelve a llamar 
         destino->HacerConexion(this,velocidad,distancia);
     }
 }
