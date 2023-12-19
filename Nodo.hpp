@@ -28,6 +28,10 @@ public:
 void Nodo::setArista(Nodo* destino,int velocidad, int distancia){
     //Verificamos si el tipo del nodo actual es "Cliente"
     if (this->tipo=="Cliente") {
+        //En el caso de que ya esté hecha la conexión, se retorna y termina la reciprocidad
+        if(referencia!=nullptr && referencia->getDestino()==destino){
+            return;
+        }
         //Si ya hay una arista, la eliminamos antes de establecer la nueva conexión, de esta forma el cliente tiene una sola conexión
         if (referencia!=nullptr) {
             delete referencia;
