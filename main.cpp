@@ -7,67 +7,70 @@
 #include "Edge.hpp"
 using namespace std;
 
-int main(){
 
-    vector<Nodo*> servidoresConConexion;
-    vector<Nodo*> servidores;
-    vector<Edge*> conexiones;
-
-    ifstream archivo;
-    archivo.open("servidores.csv");
-
-    if (!archivo.is_open()) cout << "Error al abrir el archivo." << endl;
-    else 
-    {
+//Función para leer archivo de servidores y crear una lista de nodos (cliente y router)
+vector<Nodo*> leerArchivoServidores(const string& nombreArchivo) {
+    vector<Nodo*> nodos;
+    ifstream archivo(nombreArchivo);
+    if (!archivo.is_open()) {
+        cout << "Error al abrir el archivo " << nombreArchivo << endl;
+    } else {
         string linea;
-        while (getline(archivo, linea)) 
-        {
+        while (getline(archivo, linea)) {
             istringstream ss(linea);
-            string id,servidor,tipo;
+            string id, servidor, tipo;
 
             getline(ss, id, ',');
             getline(ss, servidor, ',');
             getline(ss, tipo, ',');
-            Nodo* nodo = new Nodo(stoi(id),servidor,tipo);
-            
-            servidores.push_back(nodo);//Lista con los nodos sin conectar
-            
-            servidoresConConexion.push_back(nodo);//Lista con los nodos antes de conectar
+            Nodo* nodo = new Nodo(stoi(id), servidor, tipo);
+            nodos.push_back(nodo); //Lista con los nodos
         }
-
         archivo.close();
     }
+    return nodos;
+}
 
-    ifstream archivo2;
-    archivo.open("conexiones.csv");
+//Funcion para crear una lista de Edges, para fabricar el grafo despues
+vector<Edge*> leerArchivoConexiones(const string& nombreArchivo, const vector<Nodo*>& nodos) {
+    vector<Edge*> conexiones;
+    ifstream archivo(nombreArchivo);
 
-    if (!archivo.is_open()) cout << "Error al abrir el archivo." << endl;
-    else 
-    {
+    if (!archivo.is_open()) {
+        cout << "Error al abrir el archivo " << nombreArchivo << endl;
+    } else {
         string linea;
-        while (getline(archivo, linea)) 
-        {
+        while (getline(archivo, linea)) {
             istringstream ss(linea);
-            string idCliente,idServidor,velocidad,distancia;
+            string idCliente, idServidor, velocidad, distancia;
 
             getline(ss, idCliente, ',');
             getline(ss, idServidor, ',');
             getline(ss, velocidad, ',');
             getline(ss, distancia, ',');
-            Nodo* cliente,* servidor;
-            for(Nodo* nodo:servidoresConConexion)
-            {
-                if(nodo->getId()==stoi(idCliente))cliente=nodo;
-                if(nodo->getId()==stoi(idServidor))servidor=nodo;
+
+            Nodo* cliente = nullptr;
+            Nodo* servidor = nullptr;
+            for (Nodo* nodo : nodos) {
+                if (nodo->getId() == stoi(idCliente)) cliente = nodo;
+                if (nodo->getId() == stoi(idServidor)) servidor = nodo;
             }
-            Edge* conexion = new Edge(cliente,servidor,stoi(velocidad),stoi(distancia));
-            conexiones.push_back(conexion);//Lista de las conexiones utilizando la clase edge
 
-            cliente->setArista(servidor,stoi(velocidad),stoi(distancia));//Estan los nodos con las conexiones listas por medio de la clase arista
+            Edge* conexion = new Edge(cliente, servidor, stoi(velocidad), stoi(distancia));
+            conexiones.push_back(conexion);
+            cliente->setArista(servidor, stoi(velocidad), stoi(distancia));
         }
-
         archivo.close();
     }
+    return conexiones;
+}
+
+int main(){
+    vector<Nodo*> servidores = leerArchivoServidores("servidores.csv");
+    vector<Nodo*> servidoresConConexion = servidores; //Haciendo una copia para tener los nodos antes de conectar
+    vector<Edge*> conexiones = leerArchivoConexiones("conexiones.csv", servidoresConConexion);
+
     BellmanFord* grafo = new BellmanFord(servidores,conexiones);
     return 0;
+
 }
