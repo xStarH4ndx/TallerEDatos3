@@ -58,7 +58,6 @@ vector<Edge*> leerArchivoConexiones(const string& nombreArchivo, const vector<No
 
             Edge* conexion = new Edge(cliente, servidor, stoi(velocidad), stoi(distancia));
             conexiones.push_back(conexion);
-            cliente->setArista(servidor, stoi(velocidad), stoi(distancia));
         }
         archivo.close();
     }
