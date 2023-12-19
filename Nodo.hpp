@@ -25,9 +25,22 @@ public:
     ~Nodo();
 };
 
-void Nodo::setArista(Nodo* destino,int velocidad, int distancia)
-{
-    {
-        this->referencia= new Arista(destino,velocidad,distancia);
+void Nodo::setArista(Nodo* destino,int velocidad, int distancia){
+    //Verificamos si el tipo del nodo actual es "Cliente"
+    if (this->tipo=="Cliente") {
+        //Si ya hay una arista, la eliminamos antes de establecer la nueva conexión, de esta forma el cliente tiene una sola conexión
+        if (referencia!=nullptr) {
+            delete referencia;
+        }
+        //Asignamos la conexión con el router
+        this->referencia= new Arista(destino, velocidad, distancia);
+        //Aseguramos que el router tenga conexión con el cliente actual
+        destino->setArista(this, velocidad, distancia);
+
+    } else if (this->tipo=="Router") {
+        //Si el tipo es "Router", puede tener más de una conexión
+        this->referencia = new Arista(destino, velocidad, distancia);
+        //Aseguramos que el cliente o router tambíen tenga una conexión con el nodo actual
+        destino->setArista(this, velocidad, distancia);
     }
 }

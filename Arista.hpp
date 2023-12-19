@@ -6,7 +6,7 @@ using namespace std;
 class Arista
 {
 private:
-    Nodo* destino;// corresponde al clinete (id usuario + nombre servidor + tipo)
+    Nodo* destino;// corresponde a la conexion de cliente-router o router-router
     int velocidad,distancia;// corresponde al "peso" de la arista y los segundos que tarda
 public:
     Arista(Nodo* destino, int velocidad, int distancia)
