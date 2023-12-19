@@ -19,10 +19,10 @@ public:
     };
 
     void crearGrafo(){
-        // Creación del grafo (uniendo las conexiones)
+        //Creación del grafo (uniendo las conexiones)
         for (Edge* elemento : conexiones)
         {
-            // Obtenemos el nodo de partida y llegada, conectamos a través de aristas
+            //Obtenemos el nodo de partida y llegada, conectamos a través de aristas
             Nodo* partida= elemento->getNodoPartida();
             Nodo* destino= elemento->getDestino();
             int velocidad= elemento->getVelocidad();
