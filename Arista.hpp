@@ -24,8 +24,4 @@ public:
     ~Arista();
 };
 
-
-Arista::~Arista()
-{
-}
-
+Arista::~Arista(){}
