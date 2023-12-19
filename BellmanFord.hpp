@@ -35,4 +35,11 @@ public:
     ~BellmanFord();
 };
 
-BellmanFord::~BellmanFord(){}
+BellmanFord::~BellmanFord(){
+    for(Nodo* nodo: servidores){
+        delete nodo;
+    }
+    for(Edge* edge:conexiones){
+        delete edge;
+    }
+}

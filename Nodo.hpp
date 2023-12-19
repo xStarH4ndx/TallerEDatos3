@@ -26,9 +26,9 @@ public:
 };
 
 void Nodo::setArista(Nodo* destino,int velocidad, int distancia){
-    //Verificamos si el tipo del nodo actual es "Cliente"
     if (this->tipo=="Cliente") {
-        //En el caso de que ya esté hecha la conexión, se retorna y termina la reciprocidad
+        //Verificamos si el tipo del nodo actual es "Cliente"
+        //En el caso de que ya esté hecha la conexión, se retorna y termina la recursividad
         if(referencia!=nullptr && referencia->getDestino()==destino){
             return;
         }
