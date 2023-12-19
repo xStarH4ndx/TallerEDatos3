@@ -25,6 +25,8 @@ public:
     ~Nodo();
 };
 
+Nodo::~Nodo(){};
+
 void Nodo::agregarArista(Nodo* destino, int velocidad, int distancia){
     Arista* nuevaArista = new Arista(destino, velocidad, distancia);
     aristas.push_back(nuevaArista);
