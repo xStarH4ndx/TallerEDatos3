@@ -4,7 +4,7 @@
 #include "Nodo.hpp"
 using namespace std;
 
-class Edge : public Arista
+class Edge : public Arista//Edge hereda metodos de la clase Arista, para poder obtener destino, velocidad y distancia, junto con sus respectivos metodos
 {
 private:
     Nodo* partida;
