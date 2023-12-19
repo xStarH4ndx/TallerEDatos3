@@ -67,24 +67,13 @@ vector<Edge*> leerArchivoConexiones(const string& nombreArchivo, const vector<No
 
 int main(){
     vector<Nodo*> servidores = leerArchivoServidores("servidores.csv");
-    vector<Nodo*> servidoresConConexion = servidores; //Haciendo una copia para tener los nodos antes de conectar
+    vector<Nodo*> servidoresConConexion = servidores; //Haciendo una copia para tener los nodos antes de conectar (no se si es necesario, lo tenemos como idea por si las moscas)
     vector<Edge*> conexiones = leerArchivoConexiones("conexiones.csv", servidoresConConexion);
 
-
-    //esto se puede implementar en el grafo para crearlo
-    for(Edge* elemento: conexiones){
-        //obtenemos el nodo de partida y llegada
-        Nodo* partida= elemento->getNodoPartida();
-        Nodo* destino= elemento->getDestino();
-        
-
-       // partida->setArista(destino,)
+    //Creación del grafo (uniendo las conexiones)
+    BellmanFord grafo(servidores, conexiones);
 
 
-
-    }
-
-    BellmanFord* grafo = new BellmanFord(servidores,conexiones);
     return 0;
 
 }
