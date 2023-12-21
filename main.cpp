@@ -102,7 +102,6 @@ int main(){
     Nodo*destino=menu(servidores);
     Nodo* aux=partida;
     cout<<"---RECORRIDO---"<<endl;
-    grafo.testerRuta(partida,destino,aux);
-
+    grafo.testerRuta(partida,destino,aux,0);
     return 0;
 }
