@@ -64,6 +64,7 @@ vector<Edge*> leerArchivoConexiones(const string& nombreArchivo, const vector<No
     return conexiones;
 }
 
+
 int main(){
     vector<Nodo*> servidores = leerArchivoServidores("servidores.csv");
     vector<Nodo*> servidoresConConexion = servidores; //Haciendo una copia para tener los nodos antes de conectar (no se si es necesario, lo tenemos como idea por si las moscas)
@@ -72,6 +73,7 @@ int main(){
     //Creación del grafo (uniendo las conexiones)
     BellmanFord grafo(servidores, conexiones);
 
-    return 0;
+    
 
+    return 0;
 }
