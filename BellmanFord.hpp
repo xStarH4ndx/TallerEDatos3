@@ -49,7 +49,8 @@ bool BellmanFord::testerRuta(Nodo* partida, Nodo* destino, Nodo* aux,int total) 
     for(Arista* arista : partida->getAristas()) {
         //camino recorrido
         cout<<partida->getTipo()<<partida->getId()<<" a "<<arista->getDestino()->getTipo()<<arista->getDestino()->getId()<<endl;
-        total++;
+       
+        if(arista->getDestino()!=aux){total++;}
         cout<<total<<endl;
         //Muy importante no considerar el cliente de donde venimos
         if(arista->getDestino()->getTipo()=="cliente" && arista->getDestino()==destino) {
