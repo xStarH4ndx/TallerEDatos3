@@ -9,6 +9,7 @@ class Nodo
 private:
     int id;// id del usuario
     string nombre,tipo;// nombre del servidor + tipo (cliente o router)
+    Arista* referencia;
     vector<Arista*>aristas;// si es cliente, tendrá 1 arista bidireccional, si es router, tendrá más de 1
 public:
     Nodo(int id, string nombre,string tipo)
@@ -42,17 +43,15 @@ void Nodo::HacerConexion(Nodo* destino,int velocidad, int distancia){
     if (this->tipo=="cliente"){
         //En el caso de que ya esté hecha la conexión, se retorna y termina la recursividad
         for(Arista* arista : aristas){
-            if(arista->getDestino()==destino){
+            if(arista->getDestino()==destino){//buscando el nodo destino
                 return;
             }
         }
-        
         //Se establece la conexión con el router
         this->agregarArista(destino, velocidad, distancia);
-
         //En el caso de que router ya tenga conexión con el cliente, se retorna
-        for(Arista* referencia : destino->getAristas()){
-            if(referencia->getDestino()==this){
+        for(Arista* aristas2 : destino->getAristas()){
+            if(aristas2->getDestino()==this){//buscando el nodo partida
                 return;
             }
         }
@@ -68,10 +67,9 @@ void Nodo::HacerConexion(Nodo* destino,int velocidad, int distancia){
         }
         //En el caso de que la encuentre, se retorna, de lo contrario, se le añade
         this->agregarArista(destino,velocidad,distancia);
-
         //En el caso de que el nodo "destino" tenga una conexión ya hecha con el router, se retorna
-        for(Arista* referencia: destino->getAristas()){
-            if(referencia->getDestino()==this){
+        for(Arista* aristas2: destino->getAristas()){
+            if(aristas2->getDestino()==this){
                 return;
             }
         }
