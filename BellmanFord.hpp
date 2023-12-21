@@ -59,6 +59,7 @@ void BellmanFord::testerRuta(Nodo*partida,Nodo*destino){
                 }
             }
             testerRuta(arista->getDestino(),destino);
+            return;
         }
     }
     cout<<"No se ha encontrado"<<endl;
