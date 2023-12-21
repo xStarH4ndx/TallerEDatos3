@@ -69,12 +69,12 @@ Nodo* menu(const vector<Nodo*>&nodos){
     int id;bool encontrado=false;
     cout<<"Ingrese ID: ";
     cin>>id;
-    Nodo*server=nullptr;//Cliente o Router
+    Nodo*cliente=nullptr;//Cliente
     while(!encontrado){
         for(Nodo*nodo:nodos){
-            if(nodo->getId()==id){
+            if(nodo->getTipo()=="cliente" && nodo->getId()==id){
                 cout<<"ID verificado"<<endl;
-                server=nodo;
+                cliente=nodo;
                 encontrado=true;
                 break;
             }
@@ -84,7 +84,7 @@ Nodo* menu(const vector<Nodo*>&nodos){
             cin>>id;
         }
     }
-    return server;
+    return cliente;
 }
 
 int main(){
@@ -100,8 +100,9 @@ int main(){
     Nodo*partida=menu(servidores);
     cout<<"----RECEPTOR----"<<endl;
     Nodo*destino=menu(servidores);
-    
-    grafo.testerRuta(partida,destino);
+    Nodo* aux=partida;
+    cout<<"---RECORRIDO---"<<endl;
+    grafo.testerRuta(partida,destino,aux);
 
     return 0;
 }

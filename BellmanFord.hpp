@@ -31,7 +31,7 @@ public:
         }
     }
     void rutaMasCorta(Nodo*partida,Nodo* destino);
-    void testerRuta(Nodo*partida,Nodo* destino);
+    bool testerRuta(Nodo*partida,Nodo* destino,Nodo*aux);
     ~BellmanFord();
 };
 
@@ -45,22 +45,25 @@ BellmanFord::~BellmanFord(){
     }
 }
 
-void BellmanFord::testerRuta(Nodo*partida,Nodo*destino){
-    if (partida == nullptr) {
-        cout << "Error: Nodo de partida nulo." << endl;
-        return;
-    }
+bool BellmanFord::testerRuta(Nodo* partida, Nodo* destino, Nodo* aux) {
     for(Arista* arista : partida->getAristas()) {
-        if(arista!=nullptr && arista->getDestino()!=nullptr) {
-            if(arista->getDestino()->getTipo()=="cliente") {
-                if(arista->getDestino()==destino) {
-                    cout<<"Se ha encontrado el cliente: "<<arista->getDestino()->getId()<<endl;
-                    return;
-                }
+        //camino recorrido
+        cout<<partida->getTipo()<<partida->getId()<<" a "<<arista->getDestino()->getTipo()<<arista->getDestino()->getId()<<endl;
+
+        //Muy importante no considerar el cliente de donde venimos
+        if(arista->getDestino()->getTipo()=="cliente" && arista->getDestino()==destino) {
+            cout<<"Se ha encontrado el cliente: "<<arista->getDestino()->getId()<< endl;
+            //Se encontró el cliente, se retorna
+            return true;
+        }else if(arista->getDestino()->getTipo()=="router" && arista->getDestino()!=aux) {
+            //Muy importante no considerar el router de donde vinimos
+            if(testerRuta(arista->getDestino(),destino,partida)) {
+                //Cliente encontrado, dejamos de recorrer
+                return true;
             }
-            testerRuta(arista->getDestino(),destino);
-            return;
         }
     }
+    //No se encontró el cliente en el router
     cout<<"No se ha encontrado"<<endl;
+    return false;
 }
