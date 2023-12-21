@@ -30,7 +30,8 @@ public:
             partida->HacerConexion(destino, velocidad, distancia);
         }
     }
-    void rutaMasCorta(Nodo*partida,Nodo* llegada);
+    void rutaMasCorta(Nodo*partida,Nodo* destino);
+    void testerRuta(Nodo*partida,Nodo* destino);
     ~BellmanFord();
 };
 
@@ -42,4 +43,23 @@ BellmanFord::~BellmanFord(){
     for(Edge* edge:conexiones){
         delete edge;
     }
+}
+
+void BellmanFord::testerRuta(Nodo*partida,Nodo*destino){
+    if (partida == nullptr) {
+        cout << "Error: Nodo de partida nulo." << endl;
+        return;
+    }
+    for(Arista* arista : partida->getAristas()) {
+        if(arista!=nullptr && arista->getDestino()!=nullptr) {
+            if(arista->getDestino()->getTipo()=="cliente") {
+                if(arista->getDestino()==destino) {
+                    cout<<"Se ha encontrado el cliente: "<<arista->getDestino()->getId()<<endl;
+                    return;
+                }
+            }
+            testerRuta(arista->getDestino(),destino);
+        }
+    }
+    cout<<"No se ha encontrado"<<endl;
 }

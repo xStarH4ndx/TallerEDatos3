@@ -65,6 +65,28 @@ vector<Edge*> leerArchivoConexiones(const string& nombreArchivo, const vector<No
 }
 
 
+Nodo* menu(const vector<Nodo*>&nodos){
+    int id;bool encontrado=false;
+    cout<<"Ingrese ID: ";
+    cin>>id;
+    Nodo*server=nullptr;//Cliente o Router
+    while(!encontrado){
+        for(Nodo*nodo:nodos){
+            if(nodo->getId()==id){
+                cout<<"ID verificado"<<endl;
+                server=nodo;
+                encontrado=true;
+                break;
+            }
+        }
+        if(!encontrado){
+            cout<<"Ingrese ID valido: ";
+            cin>>id;
+        }
+    }
+    return server;
+}
+
 int main(){
     //PROBANDO CON TXT EDITADO
     vector<Nodo*> servidores = leerArchivoServidores("nuevoServer.csv");
@@ -74,7 +96,12 @@ int main(){
     //Creación del grafo (uniendo las conexiones)
     BellmanFord grafo(servidores, conexiones);
 
+    cout<<"----Emisor----"<<endl;
+    Nodo*partida=menu(servidores);
+    cout<<"----RECEPTOR----"<<endl;
+    Nodo*destino=menu(servidores);
     
+    grafo.testerRuta(partida,destino);
 
     return 0;
 }
