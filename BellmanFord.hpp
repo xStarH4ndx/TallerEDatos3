@@ -31,7 +31,7 @@ public:
         }
     }
     void rutaMasCorta(Nodo*partida,Nodo* destino);
-    bool testerRuta(Nodo*partida,Nodo* destino,Nodo*aux,int);
+    bool mostrarRuta(Nodo*partida,Nodo* destino,Nodo*aux,int);
     ~BellmanFord();
 };
 
@@ -45,7 +45,7 @@ BellmanFord::~BellmanFord(){
     }
 }
 
-bool BellmanFord::testerRuta(Nodo* partida, Nodo* destino, Nodo* aux,int total) {
+bool BellmanFord::mostrarRuta(Nodo* partida, Nodo* destino, Nodo* aux,int total) {
     for(Arista* arista : partida->getAristas()) {
         //camino recorrido
         cout<<partida->getTipo()<<partida->getId()<<" a "<<arista->getDestino()->getTipo()<<arista->getDestino()->getId()<<endl;
@@ -59,7 +59,7 @@ bool BellmanFord::testerRuta(Nodo* partida, Nodo* destino, Nodo* aux,int total) 
             return true;
         }else if(arista->getDestino()->getTipo()=="router" && arista->getDestino()!=aux) {
             //Muy importante no considerar el router de donde vinimos
-            if(testerRuta(arista->getDestino(),destino,partida,total)) {
+            if(mostrarRuta(arista->getDestino(),destino,partida,total)) {
                 //Cliente encontrado, dejamos de recorrer
                 return true;
             }

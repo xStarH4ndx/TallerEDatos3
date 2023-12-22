@@ -102,6 +102,6 @@ int main(){
     Nodo*destino=menu(servidores);
     Nodo* aux=partida;
     cout<<"---RECORRIDO---"<<endl;
-    grafo.testerRuta(partida,destino,aux,0);//1 corresponde al movimiento inicial, del cliente al router inicial
+    grafo.mostrarRuta(partida,destino,aux,0);//1 corresponde al movimiento inicial, del cliente al router inicial
     return 0;
 }
