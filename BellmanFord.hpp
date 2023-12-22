@@ -48,10 +48,15 @@ BellmanFord::~BellmanFord(){
 bool BellmanFord::mostrarRuta(Nodo* partida, Nodo* destino, Nodo* aux,int total) {
     for(Arista* arista : partida->getAristas()) {
         //camino recorrido
-        cout<<partida->getTipo()<<partida->getId()<<" a "<<arista->getDestino()->getTipo()<<arista->getDestino()->getId()<<endl;
+        //cout<<partida->getTipo()<<partida->getId()<<" a "<<arista->getDestino()->getTipo()<<arista->getDestino()->getId()<<endl;
        
-        if(arista->getDestino()->getTipo()=="router" && arista->getDestino()!=aux || arista->getDestino()==destino){total++;}
-        cout<<total<<endl;
+        if(arista->getDestino()->getTipo()=="router" && arista->getDestino()!=aux || arista->getDestino()==destino)
+        {
+            cout<<partida->getTipo()<<partida->getId()<<" a "<<arista->getDestino()->getTipo()<<arista->getDestino()->getId()<<endl;
+            total++;
+            cout<<total<<endl;
+        }
+        
         //Muy importante no considerar el cliente de donde venimos
         if(arista->getDestino()->getTipo()=="cliente" && arista->getDestino()==destino) {
             cout<<"Se ha encontrado el cliente: "<<arista->getDestino()->getId()<< endl;
@@ -63,6 +68,7 @@ bool BellmanFord::mostrarRuta(Nodo* partida, Nodo* destino, Nodo* aux,int total)
                 //Cliente encontrado, dejamos de recorrer
                 return true;
             }
+            else total--;
         }
     }
     //No se encontró el cliente en el router

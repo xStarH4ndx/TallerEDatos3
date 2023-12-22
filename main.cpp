@@ -87,6 +87,22 @@ Nodo* menu(const vector<Nodo*>&nodos){
     return cliente;
 }
 
+int cantMegas()
+{
+    int opcion;
+    do
+    {
+        cout<<"Ingrese el tipo de archivo:"<<endl;
+        cout<<" "<<endl;
+        cout<<"1) Imagen"<<endl;
+        cout<<"2) Video"<<endl;
+        cout<<"3) PDF "<<endl;
+    } while (opcion);
+    
+    
+
+}
+
 int main(){
     //PROBANDO CON TXT EDITADO
     vector<Nodo*> servidores = leerArchivoServidores("nuevoServer.csv");
@@ -102,6 +118,7 @@ int main(){
     Nodo*destino=menu(servidores);
     Nodo* aux=partida;
     cout<<"---RECORRIDO---"<<endl;
+    int megas = cantMegas();
     grafo.mostrarRuta(partida,destino,aux,0);//1 corresponde al movimiento inicial, del cliente al router inicial
     return 0;
 }
