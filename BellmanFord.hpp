@@ -50,7 +50,7 @@ bool BellmanFord::testerRuta(Nodo* partida, Nodo* destino, Nodo* aux,int total) 
         //camino recorrido
         cout<<partida->getTipo()<<partida->getId()<<" a "<<arista->getDestino()->getTipo()<<arista->getDestino()->getId()<<endl;
        
-        //if(arista->getDestino()!=aux){total++;}
+        if(arista->getDestino()->getTipo()=="router" && arista->getDestino()!=aux || arista->getDestino()==destino){total++;}
         cout<<total<<endl;
         //Muy importante no considerar el cliente de donde venimos
         if(arista->getDestino()->getTipo()=="cliente" && arista->getDestino()==destino) {
@@ -59,7 +59,7 @@ bool BellmanFord::testerRuta(Nodo* partida, Nodo* destino, Nodo* aux,int total) 
             return true;
         }else if(arista->getDestino()->getTipo()=="router" && arista->getDestino()!=aux) {
             //Muy importante no considerar el router de donde vinimos
-            if(testerRuta(arista->getDestino(),destino,partida,total++)) {
+            if(testerRuta(arista->getDestino(),destino,partida,total)) {
                 //Cliente encontrado, dejamos de recorrer
                 return true;
             }
