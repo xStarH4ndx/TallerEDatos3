@@ -96,18 +96,31 @@ int cantMegas()
         cout<<" "<<endl;
         cout<<"1) Imagen"<<endl;
         cout<<"2) Video"<<endl;
-        cout<<"3) PDF "<<endl;
-    } while (opcion);
-    
-    
-
+        cout<<"3) PDF "<<endl;cin>>opcion;
+        switch (opcion)
+        {
+        case 1:
+            return 300;
+            break;
+        case 2:
+            return 900;
+            break;
+        case 3:
+            return 600;
+            break;        
+        default:
+            cout<<"Ingrese una opción válida valido";
+            break;
+        }
+    } while (opcion==0);
+    return 0;
 }
 
 int main(){
     //PROBANDO CON TXT EDITADO
-    vector<Nodo*> servidores = leerArchivoServidores("nuevoServer.csv");
+    vector<Nodo*> servidores = leerArchivoServidores("servidores.csv");
     vector<Nodo*> servidoresConConexion = servidores; //Haciendo una copia para tener los nodos antes de conectar (no se si es necesario, lo tenemos como idea por si las moscas)
-    vector<Edge*> conexiones = leerArchivoConexiones("nuevoConexiones.csv", servidoresConConexion);
+    vector<Edge*> conexiones = leerArchivoConexiones("conexiones.csv", servidoresConConexion);
 
     //Creación del grafo (uniendo las conexiones)
     BellmanFord grafo(servidores, conexiones);
@@ -119,6 +132,6 @@ int main(){
     Nodo* aux=partida;
     cout<<"---RECORRIDO---"<<endl;
     int megas = cantMegas();
-    grafo.mostrarRuta(partida,destino,aux,0);//1 corresponde al movimiento inicial, del cliente al router inicial
+    grafo.mostrarRuta(partida,destino,aux,0,megas,0);//1 corresponde al movimiento inicial, del cliente al router inicial
     return 0;
 }
