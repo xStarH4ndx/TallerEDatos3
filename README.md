@@ -27,3 +27,7 @@ una conexión bidireccional con otro nodo
 Almacena una lista de Edges, la cual corresponde al conjunto de Nodos y la arista que los une.
 Con el metodo de crearGrafo(), se construye el grafo, uniendo los nodos a través de aristas, con
 su respectivo "peso" (velocidad y tiempo).
+
+-----------------------------------------
+#    IMPLEMENTACIÓN EN BELLMANFORD
+-----------------------------------------
