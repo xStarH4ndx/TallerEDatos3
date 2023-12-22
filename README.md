@@ -31,3 +31,5 @@ su respectivo "peso" (velocidad y tiempo).
 -----------------------------------------
 #    IMPLEMENTACIÓN EN BELLMANFORD
 -----------------------------------------
+1)Funcion mostrarRuta(Nodo,Nodo,Nodo,int): Implementa la búsqueda de una ruta en el grafo utilizando recursividad.
+Toma como parámetros un nodo de partida, un nodo destinom, y un nodo auxiliar, junto con un contador que se encarga de acumular los movimientos que se van realizando. La función recorre la lista de aristas salientes del nodo de partida, imprimiendo la información de la ruta recorrida. Además actualiza el contador para llevar un seguimiento de la cantidad de nodos tipo router visitados, excluyendo el nodo auxiliar. La función busca un nodo tipo "Cliente", cuando se encuentra, la función retorna true, en el caso contrario, la función continúa la exploración recursiva hacia nodos tipo "router". La función retorna false si no se encuentra la ruta hacia el cliente en el nodo destino o cualquier router intermedio. Este método proporciona información detallada sobre el camino recorrido, destacando la presencia de clientes y routers a lo largo de la ruta.
